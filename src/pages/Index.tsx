@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -7,6 +8,18 @@ import heroImage from "@/assets/hero-image.jpg";
 
 const Index = () => {
   const [selectedRole, setSelectedRole] = useState<"student" | "startup" | null>(null);
+  const navigate = useNavigate();
+
+  const handleGetStarted = () => {
+    if (selectedRole === "student") {
+      navigate("/student-dashboard");
+    } else if (selectedRole === "startup") {
+      navigate("/startup-dashboard");
+    } else {
+      // If no role selected, show student dashboard as default
+      navigate("/student-dashboard");
+    }
+  };
 
   const features = [
     {
@@ -65,8 +78,8 @@ const Index = () => {
             <a href="#testimonials" className="text-muted-foreground hover:text-foreground transition-colors">Testimonials</a>
           </div>
           <div className="flex items-center space-x-3">
-            <Button variant="ghost">Sign In</Button>
-            <Button variant="gradient">Get Started</Button>
+            <Button variant="ghost" onClick={() => navigate("/student-dashboard")}>Sign In</Button>
+            <Button variant="gradient" onClick={handleGetStarted}>Get Started</Button>
           </div>
         </div>
       </nav>
@@ -107,7 +120,7 @@ const Index = () => {
 
             {selectedRole && (
               <div className="animate-fade-in">
-                <Button variant="gradient" size="xl" className="shadow-glow">
+                <Button variant="gradient" size="xl" className="shadow-glow" onClick={handleGetStarted}>
                   {selectedRole === "student" ? "Find Opportunities" : "Find Talent"}
                   <ArrowRight className="ml-2" />
                 </Button>
@@ -231,10 +244,10 @@ const Index = () => {
             Join thousands of students and startups already building the future together
           </p>
           <div className="flex flex-col md:flex-row gap-4 max-w-lg mx-auto">
-            <Button variant="gradient" size="xl" className="flex-1">
+            <Button variant="gradient" size="xl" className="flex-1" onClick={() => navigate("/student-dashboard")}>
               Join as Student
             </Button>
-            <Button variant="hero" size="xl" className="flex-1">
+            <Button variant="hero" size="xl" className="flex-1" onClick={() => navigate("/startup-dashboard")}>
               Join as Startup
             </Button>
           </div>
