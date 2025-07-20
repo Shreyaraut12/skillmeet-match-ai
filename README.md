@@ -1,73 +1,40 @@
-# Welcome to your Lovable project
+# SkillMeet 🎯  
+**AI-Powered Platform to Connect Students with Startups**
 
-## Project info
+SkillMeet is a full-stack web application that helps students discover startup gigs, internships, and hackathons personalized to their skills, interests, and availability. Startups can post opportunities and find perfect student matches using a smart ML-powered matchmaking system.
 
-**URL**: https://lovable.dev/projects/5649f564-ffe4-46c5-a572-d5d0f4b7795c
+---
 
-## How can I edit this code?
+## 🚀 Features
 
-There are several ways of editing your application.
+### For Students:
+- Create a skill profile with proficiency levels
+- View top-matched gigs with compatibility scores
+- Apply to or bookmark startup opportunities
+- Track application status and history
 
-**Use Lovable**
+### For Startups:
+- Create and manage opportunity postings
+- View recommended student profiles
+- Shortlist candidates and manage applications
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/5649f564-ffe4-46c5-a572-d5d0f4b7795c) and start prompting.
+### Matchmaking:
+- Intelligent algorithm (TF-IDF + cosine similarity)
+- Scores based on skill match and interest overlap
 
-Changes made via Lovable will be committed automatically to this repo.
+---
 
-**Use your preferred IDE**
+## 🛠 Tech Stack
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- **Frontend**: React + Tailwind CSS + shadcn/ui
+- **Backend**: Node.js + Express + PostgreSQL + Prisma
+- **Match Engine**: Python (scikit-learn) or JS (TensorFlow.js)
+- **Auth**: JWT (role-based for students/startups)
+- **Hosting**: Vercel (frontend), Railway (backend)
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+--- 
+- GitHub: [github.com/yourusername/skillmeet](https://github.com/yourusername/skillmeet)
+- Presentation: [Link to your PDF or Slides]
+- Live App: [https://skillmeet.vercel.app](https://skillmeet.vercel.app)
 
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/5649f564-ffe4-46c5-a572-d5d0f4b7795c) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+---
