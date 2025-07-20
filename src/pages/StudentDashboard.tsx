@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -16,9 +16,16 @@ import {
   ExternalLink,
   ChevronRight
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const StudentDashboard = () => {
   const [profileCompletion] = useState(85);
+  const navigate = useNavigate();
+  const [userName, setUserName] = useState('User');
+  useEffect(() => {
+    const storedName = localStorage.getItem('userName');
+    if (storedName) setUserName(storedName);
+  }, []);
   
   const topMatches = [
     {
@@ -121,6 +128,13 @@ const StudentDashboard = () => {
     return "Fair Match";
   };
 
+  const getInitials = (name: string) => {
+    if (!name) return 'JD';
+    const parts = name.trim().split(' ');
+    if (parts.length === 1) return parts[0][0].toUpperCase();
+    return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+  };
+
   return (
     <div className="min-h-screen bg-gradient-subtle">
       {/* Navigation */}
@@ -133,19 +147,14 @@ const StudentDashboard = () => {
               </div>
               <span className="text-xl font-bold">SkillMeet</span>
             </div>
-            <div className="hidden md:flex items-center space-x-6">
-              <a href="/student-dashboard" className="text-primary font-medium">Dashboard</a>
-              <a href="/discover" className="text-muted-foreground hover:text-foreground transition-colors">Discover</a>
-              <a href="/profile" className="text-muted-foreground hover:text-foreground transition-colors">Profile</a>
-              <a href="/applications" className="text-muted-foreground hover:text-foreground transition-colors">Applications</a>
-            </div>
+            {/* Removed all nav links */}
           </div>
           <div className="flex items-center space-x-3">
             <Avatar className="h-8 w-8">
               <AvatarImage src="" />
-              <AvatarFallback>JD</AvatarFallback>
+              <AvatarFallback>{getInitials(userName)}</AvatarFallback>
             </Avatar>
-            <Button variant="ghost" size="sm">Logout</Button>
+            <Button variant="ghost" size="sm" onClick={() => navigate("/")}>Logout</Button>
           </div>
         </div>
       </nav>
@@ -153,7 +162,7 @@ const StudentDashboard = () => {
       <div className="container mx-auto px-4 py-8">
         {/* Header Section */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold mb-4">Welcome back, John!</h1>
+          <h1 className="text-3xl font-bold mb-4">Welcome back, {userName}!</h1>
           <div className="flex items-center gap-4 mb-4">
             <div className="flex-1 max-w-md">
               <div className="flex items-center justify-between mb-2">

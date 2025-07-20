@@ -5,10 +5,24 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Users, Target, Zap, Star, Github, Linkedin, Mail } from "lucide-react";
 import heroImage from "@/assets/hero-image.jpg";
+import { Dialog, DialogTrigger, DialogContent, DialogHeader } from "@/components/ui/dialog";
+import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { useForm } from "react-hook-form";
 
 const Index = () => {
   const [selectedRole, setSelectedRole] = useState<"student" | "startup" | null>(null);
   const navigate = useNavigate();
+  const [loginOpen, setLoginOpen] = useState(false);
+  const form = useForm({
+    defaultValues: { email: "", password: "" },
+    mode: "onTouched"
+  });
+  const onSubmit = (data: { email: string; password: string }) => {
+    // TODO: Implement authentication logic
+    alert(`Email: ${data.email}\nPassword: ${data.password}`);
+    setLoginOpen(false);
+  };
 
   const handleGetStarted = () => {
     if (selectedRole === "student") {
@@ -78,8 +92,11 @@ const Index = () => {
             <a href="#testimonials" className="text-muted-foreground hover:text-foreground transition-colors">Testimonials</a>
           </div>
           <div className="flex items-center space-x-3">
-            <Button variant="ghost" onClick={() => navigate("/student-dashboard")}>Sign In</Button>
-            <Button variant="gradient" onClick={handleGetStarted}>Get Started</Button>
+            <div className="flex space-x-2">
+              <Button variant="ghost" onClick={() => navigate("/sign-up")}>Sign In</Button>
+              <Button variant="ghost" onClick={() => navigate("/login")}>Login</Button>
+            </div>
+            {/* Removed Get Started button */}
           </div>
         </div>
       </nav>
@@ -236,24 +253,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 px-4 bg-gradient-hero">
-        <div className="container mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">Ready to Find Your Match?</h2>
-          <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Join thousands of students and startups already building the future together
-          </p>
-          <div className="flex flex-col md:flex-row gap-4 max-w-lg mx-auto">
-            <Button variant="gradient" size="xl" className="flex-1" onClick={() => navigate("/student-dashboard")}>
-              Join as Student
-            </Button>
-            <Button variant="hero" size="xl" className="flex-1" onClick={() => navigate("/startup-dashboard")}>
-              Join as Startup
-            </Button>
-          </div>
-        </div>
-      </section>
-
       {/* Footer */}
       <footer className="py-12 px-4 bg-muted/30 border-t">
         <div className="container mx-auto">
@@ -305,7 +304,7 @@ const Index = () => {
           </div>
           
           <div className="border-t mt-8 pt-8 text-center text-muted-foreground">
-            <p>&copy; 2024 SkillMeet. All rights reserved.</p>
+            <p>&copy; 2025 SkillMeet. All rights reserved.</p>
           </div>
         </div>
       </footer>
